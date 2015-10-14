@@ -11,6 +11,6 @@ anglediff=$((($angle_stop-$angle_start)/$n_angles))
 for i in `seq 0 $n_angles`;
 do
   angle=$(($angle_start + $anglediff*i))
-  python dolfin-convert.py "/home/ubuntu/naca_airfoil/msh/r0a""$angle""n""$4"".xml" "/home/ubuntu/naca_airfoil/xml/""$angle"".xml"
+  python dolfin-convert.py "/home/ubuntu/naca_airfoil/msh/r0a""$angle""n""$4"".msh" "/home/ubuntu/naca_airfoil/xml/""$angle"".xml"
   echo "convert %i done"
 done
