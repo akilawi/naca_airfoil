@@ -16,11 +16,13 @@ do
   echo "convert %i done"
 done
 
-cd /home/ubuntu/naca_airfoil/navier_stokes_solver
+
 
 for i in `seq 0 $n_angles`;
 do
+  cd /home/ubuntu/naca_airfoil/navier_stokes_solver/
   angle=$(($angle_start + $anglediff*i))
-  ./airfoil 10 0.0001 "$speed". 1 /home/ubuntu/naca_airfoil/navier_stokes_solver/"$angle"".xml"
-  cp /home/ubuntu/naca_airfoil/navier_stokes_solver/results/drag_ligt.m /home/ubuntu/naca_airfoil/navier_stokes_solver/results/"$angle"".m"
+  export LC_ALL="en_US.UTF-8"
+  ./airfoil 10 0.0001 "$speed""." 1 /home/ubuntu/naca_airfoil/xml/"$angle"".xml"
+  cp /home/ubuntu/naca_airfoil/navier_stokes_solver/results/drag_ligt.m /home/ubuntu/naca_airfoil/navi$
 done
