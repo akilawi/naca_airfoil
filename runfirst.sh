@@ -1,6 +1,6 @@
 #!/bin/bash
 ./run.sh $1 $2 $3 $4 $5
-
+echo "done run"
 angle_start="$1"
 angle_stop="$2"
 n_angles="$3"
@@ -12,4 +12,5 @@ for i in `seq 0 $n_angles`;
 do
   angle=$(($angle_start + $anglediff*i))
   python dolfin-convert.py "/home/ubuntu/naca_airfoil/msh/r0a""$angle""n""$4"".xml" "/home/ubuntu/naca_airfoil/xml/""$angle"".xml"
+  echo "convert %i done"
 done
