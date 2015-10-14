@@ -31,5 +31,4 @@ def findOptimal(folder):
     #add check to only do this for .m files
     if f.endswith(".m"):
       angles.update(liftdragratio(folder + '/' + f))
-  print angles
   print max(angles, key=angles.get)
