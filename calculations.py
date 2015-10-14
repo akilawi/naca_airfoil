@@ -33,4 +33,3 @@ def findOptimal(folder):
       angles.update(liftdragratio(folder + '/' + f))
   print angles
   print max(angles, key=angles.get)
-findOptimal('results')
