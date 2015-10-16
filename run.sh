@@ -17,7 +17,7 @@
 #
 # EDIT FOLLOWING VARIABLES
 # Path to GMSH binary
-GMSHBIN="/home/ubuntu/gmsh-2.10.1-Linux/bin/gmsh"
+GMSHBIN="/usr/bin/gmsh"
 # Path to dir where geo files will be stored
 GEODIR="geo"
 # Path to dir where msh files will be stored
