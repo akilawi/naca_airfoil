@@ -34,7 +34,7 @@ n_angles="$3"
 n_nodes="$4"
 n_levels="$5"
 
-anglediff=$((($angle_stop-$angle_start)/$n_angles))
+anglediff=$((($angle_stop - $angle_start) / $n_angles))
 for i in `seq 0 $n_angles`;
 do
   angle=$(($angle_start + $anglediff*i))
