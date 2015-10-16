@@ -1,0 +1,33 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+packages:
+    - git
+    - python-pip
+    - python-numpy
+    - python-swiftclient
+    - gmsh
+    - fenics
+
+
+
+apt_sources:
+ - source: "ppa:fenics-packages/fenics"
+ 
+runcmd:
+    - pip install Flask
+    - git clone https://github.com/akilawi/naca_airfoil.git
+    - mv naca_airfoil /home/ubuntu/
+    - mkdir /home/ubuntu/project/geo
+    - mkdir /home/ubuntu/project/msh
+    - mkdir /home/ubuntu/naca_airfoil/xml
+
+    # change permissions of the airfoil files
+    - chmod -R 777 /home/ubuntu/naca_airfoil
+    #- [chown, -R, ubuntu, project]
+
+    #- export LC_ALL=C
+
+    - echo 'done'
