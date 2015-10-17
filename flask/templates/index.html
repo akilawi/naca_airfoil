@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<title>NACA Airfoil</title>
+<link rel=stylesheet type=text/css href="{{url_for('static', filename='style.css')}}">
+<div class="page">
+  <h1>NACA Airfoil</h1>
+  <form action="{{url_for('calculate')}}" method=post>
+    <dl>
+      <dt>Angle start:</dt>
+      <dd><input type=number name=angle_start value=0></dd>
+      <dt>Angle stop:</dt>
+      <dd><input type=number name=angle_stop value=30></dd>
+      <dt>No of angles:</dt>
+      <dd><input type=number name=n_anges value=10></dd>
+      <dt>No of nodes:</dt>
+      <dd><input type=number name=n_nodes value=200></dd>
+      <dt>No of leves:</dt>
+      <dd><input type=number name=n_levels value=30></dd>
+      <dt>Speed:</dt>
+      <dd><input type=number name=speed value=10.0></dd>
+      <dd>
+        <input type=submit value=Calculate>
+      </dd>
+    </dl>
+  </form>
+</div>
