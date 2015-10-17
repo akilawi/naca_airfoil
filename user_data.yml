@@ -20,8 +20,8 @@ runcmd:
     - pip install Flask
     - git clone https://github.com/akilawi/naca_airfoil.git
     - mv naca_airfoil /home/ubuntu/
-    - mkdir /home/ubuntu/project/geo
-    - mkdir /home/ubuntu/project/msh
+    - mkdir /home/ubuntu/naca_airfoil/geo
+    - mkdir /home/ubuntu/naca_airfoil/msh
     - mkdir /home/ubuntu/naca_airfoil/xml
 
     # change permissions of the airfoil files
