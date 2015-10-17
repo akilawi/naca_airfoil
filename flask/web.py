@@ -1,11 +1,17 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from subprocess import call
+from os import listdir
+from os.path import isfile, join
+import dolfin_convert
 
 
 app = Flask(__name__)
+app.secret_key = '\x0f\x8bP\x15\xa7\xfb.\xe5\xc0\x13y\x8f>\xc0\x1e(\x99\r\xf1\xe4&\x8d\x8e\xf8'
 
 #Path to run script
-RUN_PATH = "../"
+RUN_PATH = '../'
+#Path to generated meshes that are ready for airfoil
+MESHES_PATH = './static/meshes'
 
 
 @app.before_request
@@ -38,8 +44,26 @@ def generate():
         command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
         print(command)
         return_code = call(command, shell=True)
-        return redirect(url_for('index'))
+        if return_code != 0:
+            #TODO Show some kind of error
+            return redirect(url_for('index'))
+        meshes = [ f for f in listdir('./msh') if isfile(join('./msh',f)) ]
+        for mesh in meshes:
+            if "r" + str(arg5) in mesh:
+                #print("./dolfin-convert.sh ./msh/" + mesh + " ./static/meshes/" + mesh)
+                i = 'msh/' + mesh
+                o = 'static/meshes/' + mesh[:-3] + 'xml'
+                #dolfin_convert.main(['msh/r0a0n200.msh', 'static/meshes/r0a0n200.xml'])
+                dolfin_convert.main([i, o])
+                #call("./dolfin-convert.sh ./msh/" + mesh + ". /static/meshes/" + mesh)
+        return redirect(url_for('generating'))
     return redirect(url_for('index'))
+
+@app.route('/generating')
+def generating():
+    #onlyfiles = [ f for f in listdir('./static/meshes') if isfile(join('./static/meshes',f)) ]
+    onlyfiles = [ f for f in listdir(MESHES_PATH) if isfile(join(MESHES_PATH,f)) ]
+    return render_template('generating.html', files=onlyfiles)
 
 #@app.route('/generating/<listOfObjects>')
 #def generating_meshes(listOfObjects):
