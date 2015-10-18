@@ -8,8 +8,8 @@ h2              { font-size: 1.2em; }
                   padding: 0.8em; background: white; }
 
 .menu {
-  border-right: 5px solid #ccc;
-  background: #009933;
+  border-right: 5px solid #377ba8;
+  background: #eee;
   width: 20%;
   height: 100%;
   margin: 0px !important;
@@ -20,18 +20,18 @@ h2              { font-size: 1.2em; }
 }
 
 .menu h1 {
-  color: white;
+  margin-bottom: 20px;
 }
 
 .menu ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border-top: 5px green solid;
+  border-top: 5px #377ba8 solid;
 }
 
 .menu li {
-  border-bottom: 5px green solid;
+  border-bottom: 5px #377ba8 solid;
   padding-right: 10px;
 }
 
@@ -39,7 +39,7 @@ h2              { font-size: 1.2em; }
   display: block;
   width: 100%;
   height: 40px;
-  color: white;
+  color: #377ba8;
   margin-right: 10px;
   text-align: right;
   font-size: 24px;
@@ -51,7 +51,7 @@ h2              { font-size: 1.2em; }
 }
 
 #navindex .index{
-  background: #eee;
+  background: #99CCFF;
 }
 
 #navindex .index {
@@ -59,7 +59,7 @@ h2              { font-size: 1.2em; }
 }
 
 #navgen .genmesh{
-  background: #eee;
+  background: #99CCFF;
 }
 
 #navgen .genmesh {
@@ -67,7 +67,7 @@ h2              { font-size: 1.2em; }
 }
 
 #navmeshes .viewmesh {
-  background: #eee;
+  background: #99CCFF;
 }
 
 #navmeshes .viewmesh {
