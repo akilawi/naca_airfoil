@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<title>NACA Airfoil</title>
-<link rel=stylesheet type=text/css href="{{url_for('static', filename='style.css')}}">
-<div class="page">
-  <h1>NACA Airfoil</h1>
-  <form action="{{url_for('generate')}}" method=post>
-    <dl>
-      <dt>Angle start:</dt>
-      <dd><input type=number name=angle_start value=0></dd>
-      <dt>Angle stop:</dt>
-      <dd><input type=number name=angle_stop value=30></dd>
-      <dt>No of angles:</dt>
-      <dd><input type=number name=n_angles value=10></dd>
-      <dt>No of nodes:</dt>
-      <dd><input type=number name=n_nodes value=200></dd>
-      <dt>No of levels:</dt>
-      <dd><input type=number name=n_levels value=3></dd>
-      <dt>Speed:</dt>
-      <dd><input type=number name=speed value=10.0></dd>
-      <dt>No of VM's:</dt>
-      <dd><input type=number name=n_vm value=1></dd>
-      <font color="red">
-        Warning! May take a while to generate meshes <br/>
-      </font
-      <dd>
-        <input type=submit value=Generate>
-      </dd>
-    </dl>
-  </form>
-</div>
+{% extends "layout.html" %}
+{% block navid %}
+id=navindex
+{% endblock %}
+{% block body %}
+  <ul>
+    <li>
+      <a href="/generation">Generate new meshes</a>
+    </li>
+    <li>
+      <a href="/meshes">View meshes</a>
+    </li>
+  </ul>
+{% endblock %}

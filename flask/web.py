@@ -30,6 +30,11 @@ def index():
     #return send_from_directory('templates', '')
     return render_template('index.html')
 
+@app.route('/generation')
+def generation():
+    #return send_from_directory('templates', '')
+    return render_template('generation.html')
+
 @app.route('/generate', methods=['POST'])
 def generate():
     if request.method == 'POST':
@@ -38,8 +43,6 @@ def generate():
         arg3 = request.form['n_angles']
         arg4 = request.form['n_nodes']
         arg5 = request.form['n_levels']
-        arg6 = request.form['speed']
-        arg7 = request.form['n_vm']
         #print(arg3)
         command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
         print(command)
@@ -56,14 +59,14 @@ def generate():
                 #dolfin_convert.main(['msh/r0a0n200.msh', 'static/meshes/r0a0n200.xml'])
                 dolfin_convert.main([i, o])
                 #call("./dolfin-convert.sh ./msh/" + mesh + ". /static/meshes/" + mesh)
-        return redirect(url_for('generating'))
+        return redirect(url_for('meshes'))
     return redirect(url_for('index'))
 
-@app.route('/generating')
-def generating():
+@app.route('/meshes')
+def meshes():
     #onlyfiles = [ f for f in listdir('./static/meshes') if isfile(join('./static/meshes',f)) ]
-    onlyfiles = [ f for f in listdir(MESHES_PATH) if isfile(join(MESHES_PATH,f)) ]
-    return render_template('generating.html', files=onlyfiles)
+    meshes = [ f for f in listdir(MESHES_PATH) if isfile(join(MESHES_PATH,f)) ]
+    return render_template('meshes.html', files=meshes)
 
 #@app.route('/generating/<listOfObjects>')
 #def generating_meshes(listOfObjects):

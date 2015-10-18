@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block navid %}
+id=navmeshes
+{% endblock %}
+{% block body %}
+  <h1>Generated meshes</h1>
+  {% for f in files %}
+  <!--<h3>{{f}}</h3>-->
+  <a href="static/meshes/{{f}}">{{f}}</a>
+  {% endfor %}
+{% endblock %}

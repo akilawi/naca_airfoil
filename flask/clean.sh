@@ -1,7 +1,7 @@
 #!/bin/bash
-echo 'cleaning msh/'
+echo 'cleaning msh/*'
 rm msh/*
-echo 'cleaning geo/'
+echo 'cleaning geo/*'
 rm geo/*
 echo 'cleaning static/meshes/*'
 rm static/meshes/*
