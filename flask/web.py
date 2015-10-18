@@ -3,6 +3,7 @@ from subprocess import call
 from os import listdir
 from os.path import isfile, join
 import dolfin_convert
+import airfoil_task
 
 
 app = Flask(__name__)
@@ -13,6 +14,7 @@ RUN_PATH = '../'
 #Path to generated meshes that are ready for airfoil
 MESHES_PATH = './static/meshes'
 
+TASK_QUEUE = []
 
 @app.before_request
 def before_request():
@@ -67,6 +69,24 @@ def meshes():
     #onlyfiles = [ f for f in listdir('./static/meshes') if isfile(join('./static/meshes',f)) ]
     meshes = [ f for f in listdir(MESHES_PATH) if isfile(join(MESHES_PATH,f)) ]
     return render_template('meshes.html', files=meshes)
+
+@app.route('/airfoil', methods=['POST', 'GET'])
+def airfoil():
+    if request.method == 'POST':
+        meshes = [ f for f in listdir('./static/meshes') if isfile(join('./static/meshes',f)) ]
+        for mesh in meshes:
+            TASK_QUEUE.append(airfoil_task.airfoil.delay(10, 0.001, 10.0, 1.0, mesh))
+    return render_template('airfoil.html')
+
+@app.route('/status')
+def status():
+    tasks = []
+    for t in TASK_QUEUE:
+        if(t.ready()):
+            tasks.append('Task not yet complete')
+        else:
+            tasks.append('Task complete')
+    return render_template('status.html', tasks=tasks)
 
 #@app.route('/generating/<listOfObjects>')
 #def generating_meshes(listOfObjects):

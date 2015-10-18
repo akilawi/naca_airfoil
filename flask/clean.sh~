@@ -6,5 +6,5 @@ rm geo/*
 echo 'cleaning static/meshes/*'
 rm static/meshes/*
 echo 'cleaning airfoil/*'
-rm airfoil/*
+rm static/meshes/*
 echo 'done cleaning'
