@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="{{url_for('airfoil')}}" method=post>
+    <dl>
+      <dt>Number of samples:</dt>
+      <dd><input type=number name=num_samples value=10></dd>
+      <dt>Viscosity:</dt>
+      <dd><input type=number name=visc value=0.0001></dd>
+      <dt>Speed</dt>
+      <dd><input type=number name=speed value=10.0></dd>
+      <dt>Total time:</dt>
+      <dd><input type=number name=time value=1.0></dd>
+      <dt>Mesh:</dt>
+      <dd><input type=text name=n_levels value="r1a1n200.xml"></dd>
+      <dd>
+        <input type=submit value=Start>
+      </dd>
+    </dl>
+  </form>
+{% endblock %}
