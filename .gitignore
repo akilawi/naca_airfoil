@@ -1,7 +1,7 @@
 *.pyc
 *.DS_Store
+*.msh
+*.geo
 results
 *.key
-Icon
-
 Icon
