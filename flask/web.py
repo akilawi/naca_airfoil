@@ -4,10 +4,12 @@ from os import listdir
 from os.path import isfile, join
 import dolfin_convert
 import airfoil_task
-import imp
+
+import sys
+sys.path.insert(0, '../')
+import run 
 
 #import the module responsible to add tasks to the queue
-runTask= imp.load_source('run', ../run.py)
 
 app = Flask(__name__)
 app.secret_key = '\x0f\x8bP\x15\xa7\xfb.\xe5\xc0\x13y\x8f>\xc0\x1e(\x99\r\xf1\xe4&\x8d\x8e\xf8'
@@ -49,7 +51,7 @@ def generate():
         arg5 = request.form['n_levels']
         arg6 = request.form['speed']
         #print(arg3)
-        runTask.splitTasks(arg1,arg2,arg3,arg4,arg5,arg6)
+        run.splitTasks(arg1,arg2,arg3,arg4,arg5,arg6)
         return_code=1
         # command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
         # print(command)
@@ -77,7 +79,7 @@ def airfoil():
 @app.route('/status')
 def status():
     tasks = []
-    for t in runTask.TASK_QUEUE:
+    for t in run.TASK_QUEUE:
         if(t.ready()):
             tasks.append('Task not yet complete')
         else:
