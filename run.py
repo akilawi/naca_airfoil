@@ -7,7 +7,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed):
         anglediff= (angle_stop-angle_start)/n_angles
         for i in range(n_angles):
                 angle=angle_start+anglediff*i
-                runMsh(angle , n_nodes , n_levels, speed)
+                runMsh.delay(angle , n_nodes , n_levels, speed)
 
 
 
