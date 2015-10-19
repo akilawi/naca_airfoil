@@ -2,6 +2,8 @@
 *.DS_Store
 *.msh
 *.geo
+*.xml
 results
 *.key
-Icon
+Icon
+
