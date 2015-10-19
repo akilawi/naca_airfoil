@@ -1,5 +1,5 @@
 
-
+from subprocess import call
 from celery import Celery
 app = Celery('tasks', backend='rpc://', broker='amqp://')
 def runMsh(angle , n_nodes , n_levels,speed):
