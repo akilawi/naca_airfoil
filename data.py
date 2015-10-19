@@ -29,12 +29,5 @@ def clear_file():
     f.write('')
     f.close()
 
-clear_file()
-
-for i in range(0,100):
-    save(i,0,0,0, i*i)
-
-print(get(3,0,0,0))
-print(exists(10024,0,0,0))
 
 #clear_file()
