@@ -22,7 +22,11 @@ server = nc.servers.create("mysigserver92", img, flavor=fl, key_name=kp.name, us
 print "Server created."
 u_data_file.close()
 
-time.sleep(10)
+while server.status == 'BUILD':
+    time.sleep(5)
+    print('...')
+    server = nc.servers.get(server.id)
+print('Server ready')
 
 iplist = nc.floating_ips.list()
 for ip_obj in iplist:
