@@ -9,7 +9,7 @@ config = {'username':os.environ['OS_USERNAME'],
            }
 from novaclient.client import Client
 nc = Client('2',**config)
-
+#
 fl = nc.flavors.find(name="m1.medium")
 kp = nc.keypairs.find(name="MBP-Lelli")
 img = nc.images.find(name="Ubuntu Server 14.04 LTS (Trusty Tahr)")
