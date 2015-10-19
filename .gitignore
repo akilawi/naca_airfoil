@@ -1,4 +1,7 @@
 *.pyc
+*.DS_Store
 results
 *.key
+Icon
+
 Icon
