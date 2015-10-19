@@ -81,7 +81,7 @@ def status():
     tasks = []
     print run.TASK_QUEUE
     for t in run.TASK_QUEUE:
-        if(!t.ready()):
+        if(not(t.ready()):
             tasks.append('Task not yet complete')
         else:
             tasks.append('Task complete')
