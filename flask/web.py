@@ -4,7 +4,10 @@ from os import listdir
 from os.path import isfile, join
 import dolfin_convert
 import airfoil_task
+import imp
 
+#import the module responsible to add tasks to the queue
+runTask= imp.load_source('run', ../run.py)
 
 app = Flask(__name__)
 app.secret_key = '\x0f\x8bP\x15\xa7\xfb.\xe5\xc0\x13y\x8f>\xc0\x1e(\x99\r\xf1\xe4&\x8d\x8e\xf8'
@@ -12,10 +15,9 @@ app.secret_key = '\x0f\x8bP\x15\xa7\xfb.\xe5\xc0\x13y\x8f>\xc0\x1e(\x99\r\xf1\xe
 #Path to run script
 RUN_PATH = '../'
 #Path to generated meshes that are ready for airfoil
-MESHES_PATH = './static/meshes'
+MESHES_PATH = '../msh'
 
-TASK_QUEUE = []
-
+ 
 @app.before_request
 def before_request():
     1+1
@@ -45,22 +47,16 @@ def generate():
         arg3 = request.form['n_angles']
         arg4 = request.form['n_nodes']
         arg5 = request.form['n_levels']
+        arg6 = request.form['speed']
         #print(arg3)
-        command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
-        print(command)
-        return_code = call(command, shell=True)
+        runTask.splitTasks(arg1,arg2,arg3,arg4,arg5,arg6)
+        return_code=1
+        # command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
+        # print(command)
+        # return_code = call(command, shell=True)
         if return_code != 0:
             #TODO Show some kind of error
             return redirect(url_for('index'))
-        meshes = [ f for f in listdir('./msh') if isfile(join('./msh',f)) ]
-        for mesh in meshes:
-            if "r" + str(arg5) in mesh:
-                #print("./dolfin-convert.sh ./msh/" + mesh + " ./static/meshes/" + mesh)
-                i = 'msh/' + mesh
-                o = 'static/meshes/' + mesh[:-3] + 'xml'
-                #dolfin_convert.main(['msh/r0a0n200.msh', 'static/meshes/r0a0n200.xml'])
-                dolfin_convert.main([i, o])
-                #call("./dolfin-convert.sh ./msh/" + mesh + ". /static/meshes/" + mesh)
         return redirect(url_for('meshes'))
     return redirect(url_for('index'))
 
@@ -81,7 +77,7 @@ def airfoil():
 @app.route('/status')
 def status():
     tasks = []
-    for t in TASK_QUEUE:
+    for t in runTask.TASK_QUEUE:
         if(t.ready()):
             tasks.append('Task not yet complete')
         else:
