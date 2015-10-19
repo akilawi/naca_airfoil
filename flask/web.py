@@ -79,8 +79,9 @@ def airfoil():
 @app.route('/status')
 def status():
     tasks = []
+    print run.TASK_QUEUE
     for t in run.TASK_QUEUE:
-        if(t.ready()):
+        if(!t.ready()):
             tasks.append('Task not yet complete')
         else:
             tasks.append('Task complete')
