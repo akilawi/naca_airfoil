@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Results</h1>
+    <table style="width:100%">
+      <tr>
+        <th>Angle</th>
+        <th>Nodes</th>
+        <th>Levels</th>
+        <th>Speed</th>
+        <th>Drag-Lift Ratio</th>
+      </tr>
+      {% for (a, n, l, s, v) in results %}
+
+      <tr>
+        <td style="text-align:center">{{a}}</td>
+        <td style="text-align:center">{{n}}</td>
+        <td style="text-align:center">{{l}}</td>
+        <td style="text-align:center">{{s}}</td>
+        <td style="text-align:center">{{v}}</td>
+      </tr>
+
+
+    {% endfor %}
+  </table>
+{% endblock %}
