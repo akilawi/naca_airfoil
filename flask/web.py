@@ -18,8 +18,9 @@ app.secret_key = '\x0f\x8bP\x15\xa7\xfb.\xe5\xc0\x13y\x8f>\xc0\x1e(\x99\r\xf1\xe
 RUN_PATH = '../'
 #Path to generated meshes that are ready for airfoil
 MESHES_PATH = '../msh'
-
+result=None
  
+
 @app.before_request
 def before_request():
     1+1
@@ -78,18 +79,9 @@ def airfoil():
     return render_template('airfoil.html')
 
 @app.route('/status')
-def status():
-    tasks = []
-    print run.TASK_QUEUE
-    for t in run.TASK_QUEUE:
-        print t.status
-        print t.state
-        print t.successful
-        if(not(t.ready()):
-            tasks.append('Task not yet complete')
-        else:
-            tasks.append('Task complete')
-    return render_template('status.html', tasks=tasks)
+def status():    
+    
+    return render_template('status.html', tasks=result.ready())
 
 #@app.route('/generating/<listOfObjects>')
 #def generating_meshes(listOfObjects):
