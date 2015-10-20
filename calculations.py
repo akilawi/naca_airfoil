@@ -8,10 +8,10 @@ def liftdragratio(filename):
     next(f) #Skip header
     for line in f:
       splitLine = line.split('\t')
-      splitLine[1]
-      lift += float(splitLine[1])
-      drag += float(splitLine[2])
-      numberofLines+=1
+      if len(splitLine) == 3:
+        lift += float(splitLine[1])
+        drag += float(splitLine[2])
+        numberofLines+=1
     #Get the mean value
     lift = lift/numberofLines
     drag = drag/numberofLines
@@ -32,3 +32,5 @@ def findOptimal(folder):
     if f.endswith(".m"):
       angles.update(liftdragratio(folder + '/' + f))
   print max(angles, key=angles.get)
+#for testing
+findOptimal('/Users/Lelli/Google Drive/Celine Dion/AR5/Cloud Computing/Project/naca_airfoil/results')
