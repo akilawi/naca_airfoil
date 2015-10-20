@@ -80,8 +80,7 @@ def airfoil():
 
 @app.route('/status')
 def status():    
-    
-    return render_template('status.html', tasks=result.ready())
+    return render_template('status.html', tasks=result)
 
 #@app.route('/generating/<listOfObjects>')
 #def generating_meshes(listOfObjects):
