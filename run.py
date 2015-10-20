@@ -26,10 +26,11 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed):
                 	jobs.append(runMsh.s(angle , n_nodes , n_levels, speed))
                 else:
                 	finalResults.append(get(angle, n_nodes, n_levels, speed)))
+
         tasksGroup=group(jobs)
         result = tasksGroup.apply_async()
 
-
+        print jobs
         print "executing airfoils"
         while result.ready() != True:
         	pass
