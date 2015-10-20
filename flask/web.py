@@ -4,10 +4,11 @@ from os import listdir
 from os.path import isfile, join
 import dolfin_convert
 import airfoil_task
+import data
 
 import sys
 sys.path.insert(0, '../')
-import run 
+import run
 
 #import the module responsible to add tasks to the queue
 
@@ -19,7 +20,7 @@ RUN_PATH = '../'
 #Path to generated meshes that are ready for airfoil
 MESHES_PATH = '../msh'
 result=None
- 
+
 
 @app.before_request
 def before_request():
@@ -79,8 +80,13 @@ def airfoil():
     return render_template('airfoil.html')
 
 @app.route('/status')
-def status():    
+def status():
     return render_template('status.html', tasks=result)
+
+@app.route('/results')
+def results():
+    results = data.get_all_sorted()
+    return render_template('results.html', results=results)
 
 #@app.route('/generating/<listOfObjects>')
 #def generating_meshes(listOfObjects):
