@@ -51,7 +51,8 @@ def generate():
         arg5 = request.form['n_levels']
         arg6 = request.form['speed']
         #print(arg3)
-        run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6))
+        result=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6))
+        print result
         return_code=1
         # command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
         # print(command)
