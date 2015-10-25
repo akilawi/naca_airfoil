@@ -3,23 +3,14 @@
 package_update: true
 package_upgrade: true
 
-packages:
-    - git
-    - python-pip
-    - python-numpy
-    - python-swiftclient
-    - gmsh
-    - fenics
-    - rabbitmq-server
 
 
 
-apt_sources:
- - source: "ppa:fenics-packages/fenics"
+
+
  
 runcmd:
-    - pip install Flask
-    - pip install celery
+
     - git clone https://github.com/akilawi/naca_airfoil.git
     - mv naca_airfoil /home/ubuntu/
     - mkdir /home/ubuntu/naca_airfoil/geo
