@@ -9,7 +9,7 @@ import data
 import sys
 sys.path.insert(0, '../')
 import run
-
+NumOfWorkers=1
 #import the module responsible to add tasks to the queue
 
 app = Flask(__name__)
@@ -53,8 +53,9 @@ def generate():
         arg5 = request.form['n_levels']
         arg6 = request.form['speed']
         #print(arg3)
-        result=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6))
+        result,NumOfWorkers=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),NumOfWorkers)
         print result
+        print NumOfWorkers
         return_code=1
         # command = RUN_PATH + "run.sh " + arg1 + ' ' + arg2 + ' ' + arg3 + ' ' + arg4 + ' ' + arg5
         # print(command)
