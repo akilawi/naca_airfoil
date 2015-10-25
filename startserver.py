@@ -42,7 +42,7 @@ def createServer:
   server.add_floating_ip(floating_ip)
   temp =nc.servers.ips(server)
   print "IP assigned to the instance", temp
-  return temp['ACC-Course-net'][1]['addr']
+  return floating_ip.ip
 
 
 def startWorker(ip):
