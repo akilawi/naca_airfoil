@@ -46,5 +46,10 @@ from novaclient.client import Client
 
 
 def startWorker(ip):
+  client = paramiko.SSHClient()
+  client.load_system_host_keys()
+  client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) 
+  privkey = paramiko.RSAKey.from_private_key_file("../ahil1.pem")
+  client.connect(ip,username="ubuntu",port=22,key_filename="ahil1",pkey=privkey)
+  stdin, stdout, stderr = client.exec_command('celery -A tasks worker --loglevel=info')
   
-

@@ -33,8 +33,8 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
         while (len(jobs)-(NumOfWorkers*3)) > 0 :
                 ip=createServer()
                 print ip
-                time.sleep(30)
-                #startWorker(ip)
+                time.sleep(100)
+                startWorker(ip)
                 NumOfWorkers+=1
 
 	result = tasksGroup.apply_async()
