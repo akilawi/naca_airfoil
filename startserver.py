@@ -43,3 +43,8 @@ from novaclient.client import Client
   temp =nc.servers.ips(server)
   print "IP assigned to the instance", temp
   return temp['ACC-Course-net'][1]['addr']
+
+
+def startWorker(ip):
+  
+
