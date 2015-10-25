@@ -18,8 +18,7 @@ def liftdragratio(filename):
     liftdrag = lift/drag
     #print filename
     #print liftdrag
-    dict = {filename: liftdrag}
-    return dict
+    return liftdrag
 #Only to make testing easier
 #liftdragratio('drag_ligt.m')
 
