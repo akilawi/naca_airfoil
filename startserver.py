@@ -14,7 +14,7 @@ def createServer:
   fl = nc.flavors.find(name="m1.medium")
   kp = nc.keypairs.find(name="ahil1")
   img = nc.images.find(name="airfoil-master")
-  u_data_file = file("user_data.yml")
+  u_data_file = file("../user_data.yml")
   u_data = u_data_file.read()
 
 
