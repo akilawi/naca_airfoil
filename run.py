@@ -15,20 +15,20 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed):
 	for i in range(n_angles):
 		angle=angle_start+anglediff*i
 		exist=exists(angle, n_nodes, n_levels, speed)
+                print exist
         # CHECK IF ALEADY EXIST
-		if(exit==False):
-			tempArgs=[]
-        	tempArgs.append(angle)
-        	tempArgs.append(n_nodes)
-        	tempArgs.append(n_levels)
-        	tempArgs.append(speed)
-        	jobsArgs.append(tempArgs)
-        	jobs.append(runMsh.s(angle , n_nodes , n_levels, speed))
-        else:
-        	finalResults.append(get(angle, n_nodes, n_levels, speed))
+		if(exist==False):
+        		tempArgs=[]
+                	tempArgs.append(angle)
+                	tempArgs.append(n_nodes)
+                	tempArgs.append(n_levels)
+                	tempArgs.append(speed)
+                	jobsArgs.append(tempArgs)
+                	jobs.append(runMsh.s(angle , n_nodes , n_levels, speed))
+                else:
+                        finalResults.append(get(angle, n_nodes, n_levels, speed))
 	tasksGroup=group(jobs)
 	result = tasksGroup.apply_async()
-
 	print jobs
 	print "executing airfoils"
 	# while result.ready() != True:
