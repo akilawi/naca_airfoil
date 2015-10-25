@@ -33,4 +33,4 @@ def findOptimal(folder):
       angles.update(liftdragratio(folder + '/' + f))
   print max(angles, key=angles.get)
 #for testing
-findOptimal('/Users/Lelli/Google Drive/Celine Dion/AR5/Cloud Computing/Project/naca_airfoil/results')
+# findOptimal('/Users/Lelli/Google Drive/Celine Dion/AR5/Cloud Computing/Project/naca_airfoil/results')
