@@ -4,10 +4,12 @@ from tasks import runMsh
 import sys
 from celery import group
 from data import *
+from startserver import *
+import time
 
 
 
-def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed):
+def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , NumOfWorkers):
 	jobs=[]
 	jobsArgs=[]
 	finalResults=[]
@@ -28,6 +30,13 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed):
                 else:
                         finalResults.append(get(angle, n_nodes, n_levels, speed))
 	tasksGroup=group(jobs)
+        while (len(jobs)-(NumOfWorkers*3)) > 0 :
+                ip=createServer()
+                print ip
+                time.sleep(30)
+                #startWorker(ip)
+                NumOfWorkers+=1
+
 	result = tasksGroup.apply_async()
 	print jobs
 	print "executing airfoils"
@@ -38,4 +47,5 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed):
 	for j in range(len(tasksResults)):
 		save(jobsArgs[j][0], jobsArgs[j][1], jobsArgs[j][2], jobsArgs[j][3], tasksResults[j])
 		finalResults.append(tasksResults[j])
-	return tasksResults
+	return tasksResults , NumOfWorkers
+
