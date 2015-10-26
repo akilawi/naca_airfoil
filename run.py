@@ -39,21 +39,22 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		#NumOfWorkers+=1
 	NumOfWorkers = 1
 	if(totalWorkItems>9):
-		print "Spawning 3 worker, total work items = ", totalWorkItems
+		print "Spawning 3 workers, total work items = ", totalWorkItems
 		for i in range(3):
-			ip=createWorker()
+			ip=createWorker(i)
 			print "Worker created, IP: ", ip
 		NumOfWorkers = 3
 	elif(totalWorkItems>6):
-		print "Spawning 2 worker, total work items = ", totalWorkItems
+		print "Spawning 2 workers, total work items = ", totalWorkItems
 		for i in range(2):
-			ip=createWorker()
+			ip=createWorker(i)
 			print "Worker created, IP: ", ip
 		NumOfWorkers = 2
 	else:
 		print "Spawning 1 worker, total work items = ", totalWorkItems
-		ip=createWorker()
-		print "Worker created, IP: ", ip
+		for i in range(1):
+			ip=createWorker(i)
+			print "Worker created, IP: ", ip
 
 	print "Done spawning workers."
 	result = tasksGroup.apply_async()

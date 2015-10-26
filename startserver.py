@@ -44,7 +44,7 @@ def createServer():
         print "IP assigned to the instance", floating_ip
         return floating_ip
 
-def createWorker():
+def createWorker(workerName):
         config = {'username':os.environ['OS_USERNAME'],
         'api_key':os.environ['OS_PASSWORD'],
         'project_id':os.environ['OS_TENANT_NAME'],
@@ -62,7 +62,7 @@ def createWorker():
         u_data = u_data_file.read()
 
 
-        server = nc.servers.create("G5-Worker", img, flavor=fl, key_name=kp.name, userdata=u_data)
+        server = nc.servers.create("G5-Worker_" + str(workerName), img, flavor=fl, key_name=kp.name, userdata=u_data)
 
         print "Server created."
         u_data_file.close()
