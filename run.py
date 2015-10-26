@@ -42,11 +42,11 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 	elif(totalWorkItems>6):
 		#Spawn 2 workers if more than 6 jobs
 		for i in range(2):
-	  	createWorker()
+	  	ip=createWorker()
 	  NumOfWorkers = 2
 	elif(totalWorkItems>9):
 		for i in range(3):
-	  	createWorker()
+	  	ip=createWorker()
 	  NumOfWorkers = 3
 	print "Done spawning workers."
 	result = tasksGroup.apply_async()
