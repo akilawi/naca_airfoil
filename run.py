@@ -27,8 +27,8 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
                 	tempArgs.append(speed)
                 	jobsArgs.append(tempArgs)
                 	jobs.append(runMsh.s(angle , n_nodes , n_levels, speed))
-                else:
-                        finalResults.append(get(angle, n_nodes, n_levels, speed))
+                else:   
+                        finalResults.append({str(angle):get(angle, n_nodes, n_levels, speed)})
 	tasksGroup=group(jobs)
         while (len(jobs)-(NumOfWorkers*3)) > 0 :
                 ip=createWorker()
@@ -44,6 +44,6 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 	tasksResults=result.get()
 	for j in range(len(tasksResults)):
 		save(jobsArgs[j][0], jobsArgs[j][1], jobsArgs[j][2], jobsArgs[j][3], tasksResults[j])
-		finalResults.append(tasksResults[j])
-	return tasksResults , NumOfWorkers
+		finalResults.append({str(jobsArgs[j][0]):tasksResults[j]})
+	return finalResults , NumOfWorkers
 
