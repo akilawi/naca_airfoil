@@ -1,5 +1,6 @@
 #!/bin/sh
 pip install celery
+sudo pip install python-novaclient
 git clone https://github.com/akilawi/naca_airfoil.git
 mv naca_airfoil /home/ubuntu/
 mkdir /home/ubuntu/naca_airfoil/geo

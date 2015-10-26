@@ -7,6 +7,7 @@ mkdir /home/ubuntu/naca_airfoil/xml
 pip install Flask
 pip install celery
 pip install flower -y
+sudo pip install python-novaclient
 chmod -R 777 /home/ubuntu/naca_airfoil
 cd /home/ubuntu/naca_airfoil
 instanceip=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
