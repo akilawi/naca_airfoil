@@ -2,6 +2,7 @@ import sys
 from subprocess import call
 from celery import Celery
 import calculations
+<<<<<<< HEAD
 import os
 
 broker_ip = os.environ["BROKER_IP"]
