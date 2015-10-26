@@ -16,12 +16,13 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 	totalWorkItems = 0
 	anglediff= (angle_stop-angle_start)/n_angles
 	for i in range(n_angles):
+		#This calculations might be wrong, does i get 10?
 		angle=angle_start+anglediff*i
 		exist=exists(angle, n_nodes, n_levels, speed)
 		print exist
 		# CHECK IF ALEADY EXIST
 		if(exist==False):
-			totalWorkItems +=1
+			totalWorkItems+=1
 			tempArgs=[]
 			tempArgs.append(angle)
 			tempArgs.append(n_nodes)
@@ -37,6 +38,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		#print ip
 		#NumOfWorkers+=1
 	NumOfWorkers = 1
+	print "totalWorkItems: ", totalWorkItems
 	if(totalWorkItems>3):
 		ip=createWorker
 	elif(totalWorkItems>6):
@@ -48,6 +50,8 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		for i in range(3):
 			ip=createWorker()
 		NumOfWorkers = 3
+	else:
+		ip=createWorker()
 	print "Done spawning workers."
 	result = tasksGroup.apply_async()
 	print jobs
