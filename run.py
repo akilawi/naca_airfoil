@@ -13,6 +13,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 	jobs=[]
 	jobsArgs=[]
 	finalResults=[]
+	totalWorkItems = 0
 	anglediff= (angle_stop-angle_start)/n_angles
 	for i in range(n_angles):
 		angle=angle_start+anglediff*i
@@ -20,6 +21,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		print exist
 		# CHECK IF ALEADY EXIST
 		if(exist==False):
+			totalWorkItems +=1
 			tempArgs=[]
 			tempArgs.append(angle)
 			tempArgs.append(n_nodes)
@@ -34,7 +36,19 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		#ip=createWorker()
 		#print ip
 		#NumOfWorkers+=1
-	NumOfWorkers = 2
+	NumOfWorkers = 1
+	if(totalWorkItems>3):
+		ip=createWorker
+	elif(totalWorkItems>6):
+		#Spawn 2 workers if more than 6 jobs
+		for i in range(2):
+	  	createWorker()
+	  NumOfWorkers = 2
+	elif(totalWorkItems>9):
+		for i in range(3):
+	  	createWorker()
+	  NumOfWorkers = 3
+	print "Done spawning workers."
 	result = tasksGroup.apply_async()
 	print jobs
 	print "executing airfoils"
