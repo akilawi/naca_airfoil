@@ -24,6 +24,10 @@ runcmd:
 
     #- export LC_ALL=C
     - cd /home/ubuntu/naca_airfoil
+    - instanceip=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
+    - export BROKER_IP=$instanceip
+    #Set password to rabbithq
+    - rabbitmqctl add_user group5 group5
+    - rabbitmqctl add_vhost naca
+    - rabbitmqctl set_permissions -p naca group5 ".*" ".*" ".*"
     - celery -A tasks worker --loglevel=info
-    - echo 'done'
-
