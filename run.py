@@ -31,7 +31,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
                         finalResults.append(get(angle, n_nodes, n_levels, speed))
 	tasksGroup=group(jobs)
         while (len(jobs)-(NumOfWorkers*3)) > 0 :
-                ip=createServer()
+                ip=createWorker()
                 print ip
                 NumOfWorkers+=1
 
