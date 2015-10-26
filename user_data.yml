@@ -17,10 +17,12 @@ runcmd:
     - mkdir /home/ubuntu/naca_airfoil/msh
     - mkdir /home/ubuntu/naca_airfoil/xml
 
+
     # change permissions of the airfoil files
     - chmod -R 777 /home/ubuntu/naca_airfoil
     #- [chown, -R, ubuntu, project]
 
     #- export LC_ALL=C
-
+    - celery -A /home/ubuntu/naca_airfoil/tasks worker --loglevel=info
     - echo 'done'
+
