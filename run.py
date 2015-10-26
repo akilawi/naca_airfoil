@@ -30,11 +30,11 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
                 else:   
                         finalResults.append({str(angle):get(angle, n_nodes, n_levels, speed)})
 	tasksGroup=group(jobs)
-        while (len(jobs)-(NumOfWorkers*3)) > 0 :
-                ip=createWorker()
-                print ip
-                NumOfWorkers+=1
-
+        #while (len(jobs)-(NumOfWorkers*3)) > 0 :
+                #ip=createWorker()
+                #print ip
+                #NumOfWorkers+=1
+  numOfWorkers = 2
 	result = tasksGroup.apply_async()
 	print jobs
 	print "executing airfoils"
