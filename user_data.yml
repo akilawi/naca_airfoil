@@ -23,6 +23,7 @@ runcmd:
     #- [chown, -R, ubuntu, project]
 
     #- export LC_ALL=C
-    - celery -A /home/ubuntu/naca_airfoil/tasks worker --loglevel=info
+    - cd /home/ubuntu/naca_airfoil
+    - celery -A tasks worker --loglevel=info
     - echo 'done'
 
