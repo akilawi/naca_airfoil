@@ -11,13 +11,15 @@ def createServer():
         from novaclient.client import Client
         nc = Client('2',**config)
         fl = nc.flavors.find(name="m1.medium")
-        kp = nc.keypairs.find(name="ahil1")
+        #kp = nc.keypairs.find(name="ahil1")
         img = nc.images.find(name="airfoil-master")
+        kp = nc.keypairs.find(name="MBP-Lelli")
+        #img = nc.images.find(name="Ubuntu Server 14.04 LTS (Trusty Tahr)")
         u_data_file = file("user_data.yml")
         u_data = u_data_file.read()
 
 
-        server = nc.servers.create("worker", img, flavor=fl, key_name=kp.name, userdata=u_data)
+        server = nc.servers.create("G5-Master", img, flavor=fl, key_name=kp.name, userdata=u_data)
 
         print "Server created."
         u_data_file.close()
@@ -51,13 +53,16 @@ def createWorker():
         from novaclient.client import Client
         nc = Client('2',**config)
         fl = nc.flavors.find(name="m1.medium")
-        kp = nc.keypairs.find(name="ahil1")
+        #kp = nc.keypairs.find(name="ahil1")
         img = nc.images.find(name="airfoil-master")
-        u_data_file = file("../user_data.yml")
+        kp = nc.keypairs.find(name="MBP-Lelli")
+        #img = nc.images.find(name="Ubuntu Server 14.04 LTS (Trusty Tahr)")
+
+        u_data_file = file("../worker_data.yml")
         u_data = u_data_file.read()
 
 
-        server = nc.servers.create("worker", img, flavor=fl, key_name=kp.name, userdata=u_data)
+        server = nc.servers.create("G5-Worker", img, flavor=fl, key_name=kp.name, userdata=u_data)
 
         print "Server created."
         u_data_file.close()
