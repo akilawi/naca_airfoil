@@ -9,8 +9,6 @@ import data
 import sys
 sys.path.insert(0, '../')
 import run
-#initial number of workers
-NumOfWorkers=99
 #import the module responsible to add tasks to the queue
 
 app = Flask(__name__)
@@ -21,7 +19,7 @@ RUN_PATH = '../'
 #Path to generated meshes that are ready for airfoil
 MESHES_PATH = '../msh'
 result=None
-
+tmpWorkers=1
 
 @app.before_request
 def before_request():
@@ -53,9 +51,9 @@ def generate():
         arg4 = request.form['n_nodes']
         arg5 = request.form['n_levels']
         arg6 = request.form['speed']
+        tmpWorkers = tmpWorkers
         #print(arg3)
-        result,tempNum=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),NumOfWorkers)
-        NumOfWorkers = tempNum
+        result,NumOfWorkers=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),tmpWorkers)
         print "Final results: ", result
         print "Number of workers: ", NumOfWorkers
         return_code=1
