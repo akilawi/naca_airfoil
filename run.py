@@ -5,7 +5,7 @@ import sys
 from celery import group
 from data import *
 from startserver import *
-import time
+from time import sleep
 
 
 
@@ -33,37 +33,48 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		else:   
 			finalResults.append({str(angle):get(angle, n_nodes, n_levels, speed)})
 	tasksGroup=group(jobs)
-	NumOfWorkers = 1
 
-	if(totalWorkItems>9):
+
+	#Check for workitems and also if we already have workers
+	if(totalWorkItems>9 and NumOfWorkers<3):
 		print "Spawning 3 workers, total work items = ", totalWorkItems
-		for i in range(3):
+		for i in range(3-NumOfWorkers):
 			ip=createWorker(i)
 			print "Worker created, IP: ", ip
 		NumOfWorkers = 3
-	elif(totalWorkItems>6):
+	elif(totalWorkItems>6 and NumOfWorkers<2):
 		print "Spawning 2 workers, total work items = ", totalWorkItems
 		for i in range(2):
 			ip=createWorker(i)
 			print "Worker created, IP: ", ip
 		NumOfWorkers = 2
-	elif(totalWorkItems>0):
-		print "Spawning 1 worker, total work items = ", totalWorkItems
-		for i in range(1):
-			ip=createWorker(i)
-			print "Worker created, IP: ", ip
-	else:
-		print "Spawning 0 workers, total work items = ", totalWorkItems
-		for i in range(1):
-			ip=createWorker(i)
-			print "Worker created, IP: ", ip
 
-	print "Done spawning workers."
+	#If first iteration and/or no workers have previously been started
+	if (NumOfWorkers<1):
+		if(totalWorkItems>9):
+			print "Spawning 3 workers, total work items = ", totalWorkItems
+			for i in range(3):
+				ip=createWorker(i)
+				print "Worker created, IP: ", ip
+			NumOfWorkers = 3
+		elif(totalWorkItems>6):
+			print "Spawning 2 workers, total work items = ", totalWorkItems
+			for i in range(2):
+				ip=createWorker(i)
+				print "Worker created, IP: ", ip
+			NumOfWorkers = 2
+		elif(totalWorkItems>0):
+			print "Spawning 1 worker, total work items = ", totalWorkItems
+			for i in range(1):
+				ip=createWorker(i)
+				print "Worker created, IP: ", ip
+				NumOfWorkers = 1
+		else:
+			print "Spawning 0 workers, total work items = ", totalWorkItems
+	sleep(10)
+	print "Done spawning "+ NumOfWorkers +" workers."
 	result = tasksGroup.apply_async()
-	print jobs
-	print "Executing airfoils"
-	# while result.ready() != True:
-	#   pass
+	print "Executing airfoils in queue: ", jobs
 
 	tasksResults=result.get()
 	for j in range(len(tasksResults)):
