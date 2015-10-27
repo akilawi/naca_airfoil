@@ -5,7 +5,7 @@ import sys
 from celery import group
 from data import *
 from startserver import *
-from time import sleep
+from time
 
 
 
@@ -71,7 +71,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 				NumOfWorkers = 1
 		else:
 			print "Spawning 0 workers, total work items = ", totalWorkItems
-	sleep(10)
+	time.sleep(60)
 	print "Done spawning "+ str(NumOfWorkers) +" workers."
 	result = tasksGroup.apply_async()
 	print "Executing airfoils in queue: ", jobs

@@ -51,11 +51,6 @@ def createWorker(workerName):
         'project_id':os.environ['OS_TENANT_NAME'],
         'auth_url':os.environ['OS_AUTH_URL'],
         }
-        #config = {'username':"lean5914",
-        #'api_key':"x1xv6565",
-        #'project_id':"ACC-Course",
-        #'auth_url':"http://smog.uppmax.uu.se:5000/v2.0",
-        #}
         from novaclient.client import Client
         nc = Client('2',**config)
         fl = nc.flavors.find(name="m1.medium")

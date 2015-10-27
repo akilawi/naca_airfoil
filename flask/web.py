@@ -9,7 +9,8 @@ import data
 import sys
 sys.path.insert(0, '../')
 import run
-NumOfWorkers=1
+#initial number of workers
+NumOfWorkers=0
 #import the module responsible to add tasks to the queue
 
 app = Flask(__name__)
