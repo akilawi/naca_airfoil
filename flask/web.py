@@ -19,7 +19,7 @@ RUN_PATH = '../'
 #Path to generated meshes that are ready for airfoil
 MESHES_PATH = '../msh'
 result=None
-tmpWorkers=1
+NumOfWorkers=0
 
 @app.before_request
 def before_request():
@@ -51,9 +51,10 @@ def generate():
         arg4 = request.form['n_nodes']
         arg5 = request.form['n_levels']
         arg6 = request.form['speed']
-        tmpWorkers = tmpWorkers
+        global NumOfWorkers
         #print(arg3)
-        result,NumOfWorkers=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),tmpWorkers)
+        result,tmpNum=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),NumOfWorkers)
+        NumOfWorkers = tmpNum
         print "Final results: ", result
         print "Number of workers: ", NumOfWorkers
         return_code=1
