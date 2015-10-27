@@ -10,6 +10,9 @@ import time
 
 
 def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , NumOfWorkers):
+	#Really bad workaround
+	if(NumOfWorkers == 99):
+		NumOfWorkers = 0
 	jobs=[]
 	jobsArgs=[]
 	finalResults=[]
