@@ -12,7 +12,6 @@ chmod -R 777 /home/ubuntu/naca_airfoil
 cd /home/ubuntu/naca_airfoil
 instanceip=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
 echo $instanceip >ip_number.txt
-export BROKER_IP=$instanceip
 source sourcefile_lelli.sh
 rabbitmqctl add_user group5 group5
 rabbitmqctl add_vhost naca
