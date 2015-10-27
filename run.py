@@ -10,9 +10,6 @@ import time
 
 
 def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , NumOfWorkers):
-	#Really bad workaround
-	if(NumOfWorkers == 99):
-		NumOfWorkers = 0
 	jobs=[]
 	jobsArgs=[]
 	finalResults=[]
@@ -74,7 +71,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 				NumOfWorkers = 1
 		else:
 			print "Spawning 0 workers, total work items = ", totalWorkItems
-	time.sleep(300)
+	time.sleep(250)
 	print "Done spawning "+ str(NumOfWorkers) +" workers."
 	result = tasksGroup.apply_async()
 	print "Executing airfoils in queue: ", jobs
