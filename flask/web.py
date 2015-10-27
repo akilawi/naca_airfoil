@@ -54,7 +54,8 @@ def generate():
         arg5 = request.form['n_levels']
         arg6 = request.form['speed']
         #print(arg3)
-        result,NumOfWorkers=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),NumOfWorkers)
+        result,tempW=run.splitTasks(int(arg1),int(arg2),int(arg3),int(arg4),int(arg5),int(arg6),NumOfWorkers)
+        NumOfWorkers = tempW
         print "Final results: ", result
         print "Number of workers: ", NumOfWorkers
         return_code=1
