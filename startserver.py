@@ -59,7 +59,6 @@ def createWorker(workerName):
         u_data_file = file("../worker_data.sh")
         u_data = u_data_file.read()
 
-
         server = nc.servers.create("G5-Worker_" + str(workerName), img, flavor=fl, key_name=kp.name, userdata=u_data)
 
         print "Server created."
