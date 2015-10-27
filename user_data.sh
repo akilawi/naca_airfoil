@@ -17,6 +17,6 @@ rabbitmqctl add_user group5 group5
 rabbitmqctl add_vhost naca
 rabbitmqctl set_permissions -p naca group5 ".*" ".*" ".*"
 echo 'Init done, starting Flask webserver'
-source sourcefile_lelli.sh
+source /home/ubuntu/naca_airfoil/sourcefile_lelli.sh
 #cd /home/ubuntu/naca_airfoil/flask
-#python web.py
+#python web.py &
