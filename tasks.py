@@ -4,7 +4,7 @@ from celery import Celery
 import calculations
 import os
 
-with open('ip_number.txt', 'r') as f:
+with open('../ip_number.txt', 'r') as f:
     broker_ip = f.readline()
 
 broker_adress = 'amqp://group5:group5@' + broker_ip + ':5672/naca'
