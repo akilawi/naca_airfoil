@@ -72,7 +72,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 		else:
 			print "Spawning 0 workers, total work items = ", totalWorkItems
 	sleep(10)
-	print "Done spawning "+ NumOfWorkers +" workers."
+	print "Done spawning "+ str(NumOfWorkers) +" workers."
 	result = tasksGroup.apply_async()
 	print "Executing airfoils in queue: ", jobs
 
