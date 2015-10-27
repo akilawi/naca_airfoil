@@ -41,6 +41,8 @@ def createServer():
                 floating_ip = nc.floating_ips.create(nc.floating_ip_pools.find(name="ext-net").name)
         server.add_floating_ip(floating_ip)
         print "IP assigned to the instance", floating_ip
+        #Write this IP to file instance_ip.txt
+        #Git commit this and push?
         return floating_ip
 
 def createWorker(workerName):
