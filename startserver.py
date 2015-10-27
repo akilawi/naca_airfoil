@@ -50,7 +50,7 @@ def createWorker(workerName):
         #'api_key':os.environ['OS_PASSWORD'],
         #'project_id':os.environ['OS_TENANT_NAME'],
         #'auth_url':os.environ['OS_AUTH_URL'],
-        }
+        #}
         config = {'username':"lean5914",
         'api_key':"x1xv6565",
         'project_id':"ACC-Course",
