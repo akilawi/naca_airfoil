@@ -5,7 +5,7 @@ import sys
 from celery import group
 from data import *
 from startserver import *
-from time
+import time
 
 
 
