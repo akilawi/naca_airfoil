@@ -34,7 +34,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 			finalResults.append({str(angle):get(angle, n_nodes, n_levels, speed)})
 	tasksGroup=group(jobs)
 
-
+	NumOfWorkers_start = NumOfWorkers
 	#Check for workitems and also if we already have workers
 	if(totalWorkItems>9 and NumOfWorkers<3):
 		print "Spawning 3 workers, total work items = ", totalWorkItems
@@ -71,8 +71,14 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 				NumOfWorkers = 1
 		else:
 			print "Spawning 0 workers, total work items = ", totalWorkItems
-	time.sleep(250)
-	print "Done spawning "+ str(NumOfWorkers) +" workers."
+	#Sleep if starting new workers, not tested
+	newWorkers = NumOfWorkers-NumOfWorkers_start
+	if(totalWorkItems>0 and newWorkers>0):
+		time.sleep(250)
+		print "Done spawning "+ str(NumOfWorkers) +" workers."
+	else:
+		print "No new workers spawned. Currently available workers: " + str(NumOfWorkers)
+	
 	result = tasksGroup.apply_async()
 	print "Executing airfoils in queue: ", jobs
 
