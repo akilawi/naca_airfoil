@@ -14,7 +14,6 @@ def createServer():
         #kp = nc.keypairs.find(name="ahil1")
         img = nc.images.find(name="airfoil-master")
         kp = nc.keypairs.find(name="MBP-Lelli")
-        #img = nc.images.find(name="Ubuntu Server 14.04 LTS (Trusty Tahr)")
         u_data_file = file("user_data.sh")
         u_data = u_data_file.read()
 
@@ -56,7 +55,6 @@ def createWorker(workerName):
         #kp = nc.keypairs.find(name="ahil1")
         img = nc.images.find(name="airfoil-master")
         kp = nc.keypairs.find(name="MBP-Lelli")
-        #img = nc.images.find(name="Ubuntu Server 14.04 LTS (Trusty Tahr)")
 
         u_data_file = file("../worker_data.sh")
         u_data = u_data_file.read()
