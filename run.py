@@ -57,7 +57,7 @@ def splitTasks(angle_start, angle_stop, n_angles, n_nodes , n_levels, speed , Nu
 				ip=createWorker(i)
 				print "Worker created, IP: ", ip
 			NumOfWorkers = 3
-		elif(totalWorkItems>6):
+		elif(totalWorkItems>5):
 			print "Spawning 2 workers, total work items = ", totalWorkItems
 			for i in range(2):
 				ip=createWorker(i)
